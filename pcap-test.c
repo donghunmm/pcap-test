@@ -13,47 +13,47 @@
 
 // Ethernet 헤더 구조체
 struct libnet_ethernet_hdr {
-    u_int8_t ether_dhost[ETHER_ADDR_LEN]; /* 목적지 MAC 주소 */
-    u_int8_t ether_shost[ETHER_ADDR_LEN]; /* 출발지 MAC 주소 */
-    u_int16_t ether_type;                 /* 프로토콜 타입 */
+    u_int8_t ether_dhost[ETHER_ADDR_LEN]; //dst
+    u_int8_t ether_shost[ETHER_ADDR_LEN]; //src
+    u_int16_t ether_type;
 };
 
 // IPv4 헤더 구조체
 struct libnet_ipv4_hdr {
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-    u_int8_t ip_hl:4,      /* 헤더 길이 */
-        ip_v:4;         /* 버전 */
+    u_int8_t ip_hl:4,      //header length
+        ip_v:4;
 #else
-    u_int8_t ip_v:4,       /* 버전 */
-        ip_hl:4;        /* 헤더 길이 */
+    u_int8_t ip_v:4,
+        ip_hl:4;
 #endif
-    u_int8_t ip_tos;       /* 서비스 타입 */
-    u_int16_t ip_len;      /* 전체 길이 */
-    u_int16_t ip_id;       /* 식별자 */
-    u_int16_t ip_off;      /* 프래그먼트 오프셋 */
-    u_int8_t ip_ttl;       /* TTL(Time To Live) */
-    u_int8_t ip_p;         /* 프로토콜 */
-    u_int16_t ip_sum;      /* 체크섬 */
-    struct in_addr ip_src, ip_dst; /* 출발지 및 목적지 주소 */
+    u_int8_t ip_tos;
+    u_int16_t ip_len;
+    u_int16_t ip_id;
+    u_int16_t ip_off;
+    u_int8_t ip_ttl;
+    u_int8_t ip_p;
+    u_int16_t ip_sum;
+    struct in_addr ip_src, ip_dst;
 };
 
 // TCP 헤더 구조체
 struct libnet_tcp_hdr {
-    u_int16_t th_sport;    /* 출발지 포트 */
-    u_int16_t th_dport;    /* 목적지 포트 */
-    u_int32_t th_seq;      /* 시퀀스 번호 */
-    u_int32_t th_ack;      /* 응답 번호 */
+    u_int16_t th_sport;
+    u_int16_t th_dport;
+    u_int32_t th_seq;
+    u_int32_t th_ack;
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-    u_int8_t th_x2:4,      /* 사용되지 않음 */
-        th_off:4;       /* 데이터 오프셋 */
+    u_int8_t th_x2:4,
+        th_off:4;
 #else
-    u_int8_t th_off:4,     /* 데이터 오프셋 */
-        th_x2:4;        /* 사용되지 않음 */
+    u_int8_t th_off:4,
+        th_x2:4;
 #endif
-    u_int8_t th_flags;     /* 제어 플래그 */
-    u_int16_t th_win;      /* 윈도우 */
-    u_int16_t th_sum;      /* 체크섬 */
-    u_int16_t th_urp;      /* 긴급 포인터 */
+    u_int8_t th_flags;
+    u_int16_t th_win;
+    u_int16_t th_sum;
+    u_int16_t th_urp;
 };
 
 void usage() {
